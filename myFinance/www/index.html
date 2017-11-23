@@ -1,29 +1,64 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
-    <head>
+<head>
     <!--
         Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
         For details, see http://go.microsoft.com/fwlink/?LinkID=617521
     -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
-        
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <link rel="stylesheet" type="text/css" href="css/index.css">
-        <title>myFinance</title>
-    </head>
-    <body>
-        <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap:
+http://api.openweathermap.org https://ssl.gstatic.com 'unsafe-eval'; style-src 'self'
+'unsafe-inline'; media-src *">
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+
+    <!-- STYLES -->
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+<body class="ui-mobile-viewport ui-overlay-a">
+    <!-- START CONTENT -->
+    <div data-role="page" id="overviewPage">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="index.html" class="ui-btn-active">myFinance</a></li>
+            </ul>
         </div>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="scripts/platformOverrides.js"></script>
-        <script type="text/javascript" src="scripts/index.js"></script>
-    </body>
+
+        <div role="main" class="ui-content">
+             
+            
+        </div>
+
+            <!-- START FOOTER -->
+            <footer data-role="footer" data-position="fixed" role="contentinfo">
+                <div class="ui-navbar" data-role="navbar" role="navigation">
+                    <ul class="ui-grid-b">
+                        <li class="ui-block-a">
+                            <a id="btnOverview" class="ui-link ui-btn" href="index.html">Overview</a>
+                        </li>
+                        <li class="ui-block-b">
+                            <a id="btnHistory" class="ui-link ui-btn" href="history.html">History</a>
+                        </li>
+                        <li class="ui-block-c">
+                            <a id="btnHome" class="ui-link ui-btn" href="home.html">Home</a>
+                        </li>
+                    </ul>
+                </div>
+            </footer>
+            <!-- END FOOTER -->
+        </div>
+    <!-- SCRIPTS -->
+    <script type="text/javascript" src="scripts/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="scripts/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="scripts/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="scripts/platformOverrides.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
+    <script type="text/javascript" src="scripts/finance.js"></script>
+</body>
 </html>
