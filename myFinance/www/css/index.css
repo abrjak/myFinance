@@ -2,6 +2,12 @@
     display: none;
 }
 
+hr {
+    height: 1px;
+    border-color: black;
+    margin: 5px;
+    background-color: black;
+}
 
 #error-msg {
     text-align: center;
@@ -9,17 +15,27 @@
     font-weight: bold;
 }
 
-#app-title {
-    font-size: 18px;
-}
-
 #app-footer {
-    background-color: white;
     font-size: 20px;
 }
 
-#btnOverview, #btnHistory, #btnHome {
-    color: white;
-    background-color: black;
-    
+.account, .transaction {
+    background-color: #EDEDED;
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 5px;
 }
+
+.transaction {
+    margin-bottom: 10px;
+}
+
+.transaction-details {
+    height: 22px;
+}
+
+.account-name, .account-balance {
+    text-align: right;
+    font-weight: normal;
+}
+
