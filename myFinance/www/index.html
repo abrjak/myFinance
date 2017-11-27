@@ -5,60 +5,195 @@
         Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
         For details, see http://go.microsoft.com/fwlink/?LinkID=617521
     -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap:
-http://api.openweathermap.org https://ssl.gstatic.com 'unsafe-eval'; style-src 'self'
-'unsafe-inline'; media-src *">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline'; media-src *">
 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <title>myFinance</title>
 
     <!-- STYLES -->
     <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 <body class="ui-mobile-viewport ui-overlay-a">
-    <!-- START CONTENT -->
-    <div data-role="page" id="overviewPage">
-        <div data-role="navbar">
-            <ul>
-                <li><a href="index.html" class="ui-btn-active">myFinance</a></li>
-            </ul>
-        </div>
+    <!-- START OVERVIEW-PAGE -->
+    <div id="overviewPage" class="ui-page ui-page-footer-fixed ui-page-active ui-page-theme-a" data-role="page" data-url="overview" tabindex="0">
+        <div class="ui-panel-wrapper">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#overviewPage" class="ui-btn-active">myFinance</a></li>
+                </ul>
+            </div>
 
-        <div role="main" class="ui-content">
-             
-            
-        </div>
+            <div role="main" class="ui-content">
+                <div class="accounts-none">
+                    <div class="ui-grid-solo">
+                        <div class="ui-block-a alert alert-danger"><strong>No Accounts!</strong> Register an Account in the 'Home'-Tab</div>
+                    </div>
+                </div>
+                <div id="accountOverview">
+                </div>
+                <div class="ui-grid-solo new-transaction">
+                    <div class="ui-block-a"><a href="#popupTransaction" data-rel="popup" data-position-to="window" data-transition="pop" id="btnNewTransaction" class="ui-btn ui-shadow ui-icon-plus ui-btn-icon-left">New Transaction</a></div>
+                    <div data-role="popup" id="popupTransaction" data-overlay-theme="a" data-theme="a" data-dismissible="false" style="max-width:600px;">
+                        <div data-role="header" data-theme="a">
+                            <h1>New Transaction</h1>
+                        </div>
+                        <div role="main" class="ui-content">
+                            <label for="account-select-overview" class="select">Select your Account:</label>
+                            <select name="account-select-overview" id="account-select-overview">
+                                <option value="0">-----</option>
+                            </select>
+                            <label for="descInput">Description:</label>
+                            <input name="descInput" id="descInput" class="transaction-desc" type="text" required>
+                            <label for="category-select-overview" class="select">Select a Category:</label>
+                            <select id="category-select-overview" name="category-select-overview">
+                                <option value="0">-----</option>
+                            </select>
+                            <label for="valueInput">Price in CHF:</label>
+                            <input name="valueInput" class="transaction-value" pattern="[0-9]*" id="valueInput" step="0.05" min="0" type="number" required>
+                            <hr />
+                            <a id="btnSaveTransaction" href="#" class="transaction-save ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-a" data-rel="back" data-transition="flow">Save</a>
+                            <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-a" data-rel="back">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-            <!-- START FOOTER -->
-            <footer data-role="footer" data-position="fixed" role="contentinfo">
+            <!-- START FOOTER OVERIVEW-PAGE -->
+            <div class="ui-footer ui-bar-inherit ui-footer-fixed" data-role="footer" data-position="fixed" role="contentinfo">
                 <div class="ui-navbar" data-role="navbar" role="navigation">
                     <ul class="ui-grid-b">
                         <li class="ui-block-a">
-                            <a id="btnOverview" class="ui-link ui-btn" href="index.html">Overview</a>
+                            <a id="btnOverview" class="ui-link ui-btn ui-btn-active ui-icon-bars ui-btn-icon-top" href="#overviewPage">Overview</a>
                         </li>
                         <li class="ui-block-b">
-                            <a id="btnHistory" class="ui-link ui-btn" href="history.html">History</a>
+                            <a id="btnHistory" class="ui-link ui-btn ui-icon-clock ui-btn-icon-top" href="#historyPage">History</a>
                         </li>
                         <li class="ui-block-c">
-                            <a id="btnHome" class="ui-link ui-btn" href="home.html">Home</a>
+                            <a id="btnHome" class="ui-link ui-btn ui-icon-home ui-btn-icon-top" href="#homePage">Home</a>
                         </li>
                     </ul>
                 </div>
-            </footer>
-            <!-- END FOOTER -->
+            </div>
+            <!-- END FOOTER OVERIVEW-PAGE -->
         </div>
+    </div>
+    <!-- END OVERIVEW-PAGE -->
+    <!-- START HISTORY-PAGE -->
+    <div id="historyPage" class="ui-page ui-page-footer-fixed ui-page-theme-a" data-role="page" data-url="overview" tabindex="0">
+        <div class="ui-panel-wrapper">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#historyPage" class="ui-btn-active">myFinance</a></li>
+                </ul>
+            </div>
+
+            <div role="main" class="ui-content">
+                <div class="accounts-none">
+                    <div class="ui-grid-solo">
+                        <div class="ui-block-a alert alert-danger"><strong>No Accounts!</strong> Register an Account in the 'Home'-Tab</div>
+                    </div>
+                </div>
+                <div id="accountHistorySelect">
+                    <label for="account-select-history" class="select">Select your Account:</label>
+                    <select name="account-select-history" id="account-select-history">
+                        <option value="0">-----</option>
+                    </select>
+                    <br />
+                </div>
+                <div id="transactionOverview">
+                </div>
+            </div>
+
+            <!-- START FOOTER HISTORY-PAGE -->
+            <div class="ui-footer ui-bar-inherit ui-footer-fixed" data-role="footer" data-position="fixed" role="contentinfo">
+                <div class="ui-navbar" data-role="navbar" role="navigation">
+                    <ul class="ui-grid-b">
+                        <li class="ui-block-a">
+                            <a id="btnOverview" class="ui-link ui-btn ui-icon-bars ui-btn-icon-top" href="#overviewPage">Overview</a>
+                        </li>
+                        <li class="ui-block-b">
+                            <a id="btnHistory" class="ui-link ui-btn ui-btn-active ui-icon-clock ui-btn-icon-top" href="#historyPage">History</a>
+                        </li>
+                        <li class="ui-block-c">
+                            <a id="btnHome" class="ui-link ui-btn ui-icon-home ui-btn-icon-top" href="#homePage">Home</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- END FOOTER HISTORY-PAGE -->
+        </div>
+    </div>
+    <!-- END HISTORY-PAGE -->
+    <!-- START HOME-PAGE -->
+    <div id="homePage" class="ui-page ui-page-footer-fixed ui-page-theme-a" data-role="page" data-url="overview" tabindex="0">
+        <div class="ui-panel-wrapper">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#homePage" class="ui-btn-active">myFinance</a></li>
+                </ul>
+            </div>
+
+            <div role="main" class="ui-content">
+                <div class="accounts-none">
+                    <div class="ui-grid-solo">
+                        <div class="ui-block-a alert alert-danger"><strong>No Accounts!</strong> Register an Account here</div>
+                    </div>
+                </div>
+                <div id="accountOverviewHome">
+                </div>
+                <div class="ui-grid-solo new-account">
+                    <div class="ui-block-a"><a href="#popupAccount" data-rel="popup" data-position-to="window" data-transition="pop" id="btnNewAccount" class="ui-btn ui-shadow ui-icon-plus ui-btn-icon-left">New Account</a></div>
+                    <div data-role="popup" id="popupAccount" data-overlay-theme="a" data-theme="a" data-dismissible="false" style="max-width:600px;">
+                        <div data-role="header" data-theme="a">
+                            <h1>New Account</h1>
+                        </div>
+                        <div role="main" class="ui-content">
+                            <label for="nameAccount" class="select">Name your Account:</label>
+                            <input name="nameAccount" id="nameAccount" type="text" required>
+                            <label for="balanceAccount">Current Balance:</label>
+                            <input name="balanceAccount" pattern="[0-9]*" id="balanceAccount" step="0.05" min="0" type="number" required>
+                            <hr />
+                            <a id="btnSaveAccount" href="#" class="account-save ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-a" data-rel="back" data-transition="flow">Save</a>
+                            <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-a" data-rel="back">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- START FOOTER HOME-PAGE -->
+            <div class="ui-footer ui-bar-inherit ui-footer-fixed" data-role="footer" data-position="fixed" role="contentinfo">
+                <div class="ui-navbar" data-role="navbar" role="navigation">
+                    <ul class="ui-grid-b">
+                        <li class="ui-block-a">
+                            <a id="btnOverview" class="ui-link ui-btn ui-icon-bars ui-btn-icon-top" href="#overviewPage">Overview</a>
+                        </li>
+                        <li class="ui-block-b">
+                            <a id="btnHistory" class="ui-link ui-btn ui-icon-clock ui-btn-icon-top" href="#historyPage">History</a>
+                        </li>
+                        <li class="ui-block-c">
+                            <a id="btnHome" class="ui-link ui-btn ui-btn-active ui-icon-home ui-btn-icon-top" href="#homePage">Home</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- END FOOTER HOME-PAGE -->
+        </div>
+    </div>
+    <!-- END HOME-PAGE -->
     <!-- SCRIPTS -->
     <script type="text/javascript" src="scripts/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="scripts/jquery.mobile-1.4.5.min.js"></script>
-    <script type="text/javascript" src="scripts/bootstrap.min.js"></script>
 
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="scripts/platformOverrides.js"></script>
+    <script type="text/javascript" src="scripts/bootstrap.min.js"></script>
     <script type="text/javascript" src="scripts/index.js"></script>
     <script type="text/javascript" src="scripts/finance.js"></script>
+    <!--<script type="text/javascript" src="scripts/history.js"></script>-->
 </body>
 </html>
