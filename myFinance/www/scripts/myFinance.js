@@ -1,24 +1,36 @@
 ﻿$(document).ready(function () {
-    console.log('Document Ready');
-    addDefaultCategories();
-    setAccountOverview();
-    setHistoryPage();
-    setHomePage();
-}
-);
+    addStandardCategories();
+    setOverviewPage();
+
+});
 
 $('#btnSaveTransaction').click(function () {
-    transactionSaved();
+    saveTransaction();
 });
 
 $('#btnSaveAccount').click(function () {
-    accountSaved();
+    saveAccount();
+});
+
+$('.btn-overview').click(function () {
+    console.log("Changed to Overview");
+    setOverviewPage();
+});
+
+$('.btn-home').click(function () {
+    console.log("Changed to Home");
+    setHomePage();
+});
+
+$('.btn-history').click(function () {
+    console.log("Changed to History");
+    setHistoryPage();
 });
 
 /**
  * Adds Standard-Categories to the LocalStorage
  */
-function addDefaultCategories() {
+function addStandardCategories() {
     var categories = {
         'categories': [
             { 'id': 0, 'desc': 'Drinks & Food' },
@@ -29,17 +41,22 @@ function addDefaultCategories() {
     localStorage.setItem('categories', JSON.stringify(categories));
 }
 
-/**
- * Adds Test-Accounts to the LocalStorage
- */
-function addDefaultAccounts() {
-    var accounts = {
-        'accounts': [
-            { 'id': 1, 'name': 'SoBa', 'balance': '100.00' },
-            { 'id': 2, 'name': 'UBS', 'balance': '80.00' }
-        ]
-    };
-    localStorage.setItem('accounts', JSON.stringify(accounts));
+function setOverviewPage() {
+    if (keyIsInLocalStorage('accounts', 'accountOverview')) {
+        // Parse JSON of Accounts
+        var obj = JSON.parse(localStorage.getItem('accounts'));
+        var accounts = obj.accounts;
+        console.log(accounts);
+        $('.account').remove();
+        $('.option-account').remove();
+        // Add HTML-Element for each Account
+        for (i = 0; i < accounts.length; i++) {
+            console.log(accounts[i]);
+            appendAccountOverview(accounts[i], 'accountOverview');
+            setAccountSelect(accounts[i], 'account-select-overview');
+        }
+        setCategorySelect('category-select-overview');
+    }
 }
 
 function keyIsInLocalStorage(key, page) {
@@ -49,33 +66,14 @@ function keyIsInLocalStorage(key, page) {
         return false;
     } else {
         $('.accounts-none').css('display', 'none');
+        $('#' + page).css('display', 'block');
+        $('.new-transaction').css('display', 'block');
         return true;
     }
 }
 
-/**
- * Sets the Overview of Accounts based on the Data in LocalStorage
- */
-function setAccountOverview() {
-    if (keyIsInLocalStorage('accounts', 'accountOverview')) {
-        // Parse JSON of Accounts
-        var obj = JSON.parse(localStorage.getItem('accounts'));
-        var accounts = obj.accounts;
-
-        $('.account').remove();
-
-        // Add HTML-Element for each Account
-        for (i = 0; i < accounts.length; i++) {
-            var account = accounts[i];
-            drawAccountOverview(account, 'accountOverview');      
-            setAccountSelectOverview(account, 'account-select-overview');
-        }
-        setCategorySelectOverview();
-    }
-}
-
-function drawAccountOverview(account, page) {
-
+function appendAccountOverview(account, page) {
+    console.log('Appending ' + account);
     $('#' + page).append(
         $('<div></div>')
             .addClass('jumbotron ui-shadow account')
@@ -110,10 +108,18 @@ function drawAccountOverview(account, page) {
                 )
             )
     );
-
 }
 
-function setCategorySelectOverview() {
+function setAccountSelect(account, page) {
+    $('#' + page).append(
+        $('<option></option>')
+            .attr('value', account.id)
+            .addClass('option-account')
+            .text(account.name)
+    );
+}
+
+function setCategorySelect(page) {
     var cat = JSON.parse(localStorage.getItem('categories'));
     var categories = cat.categories;
 
@@ -132,26 +138,13 @@ function setCategorySelectOverview() {
     }
 }
 
-function setAccountSelectOverview(account, page) {
-
-    $('#' + page).append(
-        $('<option></option>')
-            .attr('value', account.id)
-            .addClass('option-account')
-            .text(account.name)
-    );
-}
-
-
-function transactionSaved() {
-    console.log("Transaction Saved");
+function saveTransaction() {
     var accountId = $("#account-select-overview option:selected").val();
     var desc = $('#descInput').val();
     var categoryId = $("#category-select-overview option:selected").val();
     var value = $('#valueInput').val();
 
     if (localStorage.getItem('transactions') == null) {
-
         var transactions = {
             'transactions': [
                 {
@@ -175,8 +168,8 @@ function transactionSaved() {
 
     console.log(localStorage.getItem('transactions'));
     recalculateBalances();
-
 }
+
 
 function recalculateBalances() {
     var obj = JSON.parse(localStorage.getItem('accounts'));
@@ -209,10 +202,11 @@ function setHistoryPage() {
         // Parse JSON of Accounts
         var obj = JSON.parse(storedAccounts);
         var accounts = obj.accounts;
+        $('.option-account').remove();
 
         // Add HTML-Element for each Account
         for (i = 0; i < accounts.length; i++) {
-            setAccountSelectOverview(accounts[i], 'account-select-history');
+            setAccountSelect(accounts[i], 'account-select-history');
         }
 
         $('#account-select-history').change(function () {
@@ -298,7 +292,7 @@ function setHistoryPage() {
                                 .addClass('ui-block-d transaction-details')
                                 .text('Value in CHF')
                             )
-                    )
+                        )
                         .append($('<hr />'))
                 );
 
@@ -350,61 +344,30 @@ function setHistoryPage() {
     }
 }
 
-function setHomePage() {
 
+function setHomePage() {
     var storedAccounts = localStorage.getItem('accounts');
     if (storedAccounts == null) {
         $('#accountOverviewHome').css('display', 'none');
     } else {
         $('.accounts-none').css('display', 'none');
+        $('#accountOverviewHome').css('display', 'block');
         // Parse JSON of Accounts
         var obj = JSON.parse(storedAccounts);
         var accounts = obj.accounts;
+
+        $('.account').remove();
 
         // Add HTML-Element for each Account
         for (i = 0; i < accounts.length; i++) {
 
             var account = accounts[i];
-
-            $('#accountOverviewHome').append(
-                $('<div></div>')
-                    .addClass('jumbotron ui-shadow account')
-                    .append(
-                    $('<div></div>')
-                        .addClass('ui-grid-a')
-                        .append(
-                        $('<div></div>')
-                            .addClass('ui-block-a')
-                            .text('Account')
-                        )
-                        .append(
-                        $('<div></div>')
-                            .addClass('ui-block-b account-name')
-                            .text(account.name)
-                        )
-                    )
-                    .append($('<hr />'))
-                    .append(
-                    $('<div></div>')
-                        .addClass('ui-grid-a')
-                        .append(
-                        $('<div></div>')
-                            .addClass('ui-block-a')
-                            .text('Balance')
-                        )
-                        .append(
-                        $('<div></div>')
-                            .addClass('ui-block-b account-balance')
-                            .attr('id', 'accountBalance' + account.id)
-                            .text(account.balance + ' CHF')
-                        )
-                    )
-            );
+            appendAccountOverview(accounts[i], 'accountOverviewHome');
         }
     }
 }
 
-function accountSaved() {
+function saveAccount() {
 
     console.log("Account Saved");
     var name = $('#nameAccount').val();
@@ -432,11 +395,6 @@ function accountSaved() {
         obj.accounts[t] = newAccount;
         localStorage.setItem('accounts', JSON.stringify(obj));
     }
-
-    console.log(localStorage.getItem('accounts'));
-
-    setAccountOverview();
-    setHistoryPage();
     setHomePage();
-
+    console.log(localStorage.getItem('accounts'));
 }

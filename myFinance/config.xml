@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<widget xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" id="io.cordova.myapp4a3c8b" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" defaultlocale="en-US">
+<widget xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" id="io.cordova.myapp4a3c8b" version="1.0.1" xmlns:gap="http://phonegap.com/ns/1.0" xmlns="http://www.w3.org/ns/widgets" defaultlocale="en-US" android-versionCode="">
   <name>myFinance</name>
-  <description>A blank project that uses Apache Cordova to help you build an app that targets multiple mobile platforms: Android, iOS, and the Windows Universal Platform.</description>
+  <description>Eine Smartphone-Applikation erstellt mit Apache Cordova zum Erforschen der Grundlagen der mobilen Applikationsentwicklung.</description>
   <author href="http://cordova.io" email="dev@cordova.apache.org">Jakob Abraham</author>
   <vs:template-name>BlankJS</vs:template-name>
   <vs:toolsetVersion>6.3.1</vs:toolsetVersion>
@@ -103,4 +103,5 @@
     <splash src="res/screens/windows/SplashScreen.scale-240.png" width="1152" height="1920" />
     <splash src="res/screens/windows/SplashScreenPhone.scale-240.png" width="1152" height="1920" />
   </platform>
+  <preference name="ShowTitle" value="True" />
 </widget>
