@@ -165,7 +165,6 @@ function saveTransaction() {
         obj.transactions[t] = newTransaction;
         localStorage.setItem('transactions', JSON.stringify(obj));
     }
-
     console.log(localStorage.getItem('transactions'));
     recalculateBalances();
 }
@@ -182,7 +181,6 @@ function recalculateBalances() {
 
         var tAccount = transactions[t].accountId - 1;
         var tValue = transactions[t].value;
-
         obj.accounts[tAccount].balance -= tValue;
         console.log('New Balance:' + accounts[tAccount].balance);
         $('#accountBalance' + transactions[t].accountId).text(accounts[tAccount].balance + ' CHF');
@@ -349,7 +347,6 @@ function setHistoryPage() {
     }
 }
 
-
 function setHomePage() {
     var storedAccounts = localStorage.getItem('accounts');
     if (storedAccounts == null) {
@@ -360,9 +357,7 @@ function setHomePage() {
         // Parse JSON of Accounts
         var obj = JSON.parse(storedAccounts);
         var accounts = obj.accounts;
-
         $('.account').remove();
-
         // Add HTML-Element for each Account
         for (i = 0; i < accounts.length; i++) {
 

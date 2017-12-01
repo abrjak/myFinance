@@ -92,41 +92,40 @@
                 </ul>
             </div>
 
-            <div role="main" class="ui-content">
-                <div class="accounts-none">
-                    <div class="ui-grid-solo">
-                        <div class="ui-block-a alert alert-danger"><strong>No Accounts!</strong> Register an Account in the 'Home'-Tab</div>
+                <div role="main" class="ui-content">
+            <div class="accounts-none">
+                <div class="ui-grid-solo">
+                    <div class="ui-block-a alert alert-danger"><strong>No Accounts!</strong> Register an Account in the 'Home'-Tab</div>
+                </div>
+            </div>
+            <div id="accountHistorySelect">
+                <label for="account-select-history" class="select">Select your Account:</label>
+                <select name="account-select-history" id="account-select-history">
+                    <option value="0">-----</option>
+                </select>
+                <br />
+            </div>
+            <div id="transactionOverview">
+            </div>
+        </div>
+                <!-- START FOOTER HISTORY-PAGE -->
+                <div class="ui-footer ui-bar-inherit ui-footer-fixed" data-role="footer" data-position="fixed" role="contentinfo">
+                    <div class="ui-navbar" data-role="navbar" role="navigation">
+                        <ul class="ui-grid-b">
+                            <li class="ui-block-a">
+                                <a id="btnOverview" class="btn-overview ui-link ui-btn ui-icon-bars ui-btn-icon-top" href="#overviewPage">Overview</a>
+                            </li>
+                            <li class="ui-block-b">
+                                <a id="btnHistory" class="btn-history ui-link ui-btn ui-btn-active ui-icon-clock ui-btn-icon-top" href="#historyPage">History</a>
+                            </li>
+                            <li class="ui-block-c">
+                                <a id="btnHome" class="btn-home ui-link ui-btn ui-icon-home ui-btn-icon-top" href="#homePage">Home</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <div id="accountHistorySelect">
-                    <label for="account-select-history" class="select">Select your Account:</label>
-                    <select name="account-select-history" id="account-select-history">
-                        <option value="0">-----</option>
-                    </select>
-                    <br />
-                </div>
-                <div id="transactionOverview">
-                </div>
+                <!-- END FOOTER HISTORY-PAGE -->
             </div>
-
-            <!-- START FOOTER HISTORY-PAGE -->
-            <div class="ui-footer ui-bar-inherit ui-footer-fixed" data-role="footer" data-position="fixed" role="contentinfo">
-                <div class="ui-navbar" data-role="navbar" role="navigation">
-                    <ul class="ui-grid-b">
-                        <li class="ui-block-a">
-                            <a id="btnOverview" class="btn-overview ui-link ui-btn ui-icon-bars ui-btn-icon-top" href="#overviewPage">Overview</a>
-                        </li>
-                        <li class="ui-block-b">
-                            <a id="btnHistory" class="btn-history ui-link ui-btn ui-btn-active ui-icon-clock ui-btn-icon-top" href="#historyPage">History</a>
-                        </li>
-                        <li class="ui-block-c">
-                            <a id="btnHome" class="btn-home ui-link ui-btn ui-icon-home ui-btn-icon-top" href="#homePage">Home</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!-- END FOOTER HISTORY-PAGE -->
-        </div>
     </div>
     <!-- END HISTORY-PAGE -->
     <!-- START HOME-PAGE -->
