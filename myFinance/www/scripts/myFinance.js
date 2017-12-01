@@ -247,6 +247,7 @@ function setHistoryPage() {
                         $('<div></div>')
                             .addClass('ui-grid-a')
                             .append(
+
                             $('<div></div>')
                                 .addClass('ui-block-a')
                                 .text('Balance')
