@@ -368,7 +368,6 @@ function setHomePage() {
 }
 
 function saveAccount() {
-
     console.log("Account Saved");
     var name = $('#nameAccount').val();
     var balance = $('#balanceAccount').val();
