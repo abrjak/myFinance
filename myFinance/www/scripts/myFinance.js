@@ -198,11 +198,15 @@ function setHistoryPage() {
         $('.new-transaction').css('display', 'none');
     } else {
         $('.accounts-none').css('display', 'none');
+        $('#accountHistorySelect').css('display', 'block');
 
         // Parse JSON of Accounts
         var obj = JSON.parse(storedAccounts);
         var accounts = obj.accounts;
         $('.option-account').remove();
+        $('.account').remove();
+        $('.transaction').remove();
+        $('.transaction-title').remove();
 
         // Add HTML-Element for each Account
         for (i = 0; i < accounts.length; i++) {
